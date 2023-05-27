@@ -675,6 +675,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de82e8ffd7dad47c7b0ab18dcab06984, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dayText: {fileID: 2011582699}
+  dayTextSprites:
+  - {fileID: 21300000, guid: b537b7ad49cd24b49aeb34613f36bdf5, type: 3}
+  - {fileID: 21300000, guid: c2d5e4cd06d5c4f52b0f9d33087b9243, type: 3}
+  - {fileID: 21300000, guid: 4a82bcfc0ed64479da79b7f78bb41a7e, type: 3}
+  - {fileID: 21300000, guid: 89fe08bdc8d2848b6849abd949ecc481, type: 3}
+  - {fileID: 21300000, guid: 3e7d5d5d0d1f64dc2a250a97c802e6e6, type: 3}
+  - {fileID: 21300000, guid: 0ca7e458861894a368b4c98ffdef867e, type: 3}
+  - {fileID: 21300000, guid: e0989437847654c47a92530f62c78044, type: 3}
+  - {fileID: 21300000, guid: 312bb53d57e6242199095e6ebbe1b088, type: 3}
+  - {fileID: 21300000, guid: e88c18b8f1903423390a98e4b24c5de4, type: 3}
+  dayFill: {fileID: 515148721}
+  pheromoneFill: {fileID: 2047510630}
+  foodFill: {fileID: 1561957009}
+  waterFill: {fileID: 1067865870}
+  honeydewFill: {fileID: 204393183}
+  buildingMaterialFill: {fileID: 1553109601}
+  daryl: 0.5
 --- !u!1 &168551188
 GameObject:
   m_ObjectHideFlags: 0
