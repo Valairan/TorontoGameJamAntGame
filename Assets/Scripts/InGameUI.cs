@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
 {
+    public bool isActive = false;
+
     // Reference the day text
     public Image dayText;
     // Reference the day text sprites array
@@ -26,8 +28,10 @@ public class InGameUI : MonoBehaviour
     public int level = 1;
     // Track the current day
     public int currentDay = 0;
+    public int maxDay = 9;
     // Track the day timer
-    public float dayTimer = 1.0f;
+    public float initialDayTimer = 60.0f;
+    public float currentDayTimer = 60.0f;
     // Track the pheromone
     public float pheromone = 1.0f;
     // Track the food
@@ -44,7 +48,7 @@ public class InGameUI : MonoBehaviour
         // Set the day text
         SetDayText(currentDay);
         // Set the day fill
-        SetDayFill(dayTimer);
+        SetDayFill(currentDayTimer);
         // Set the pheromone fill
         SetPheromoneFill(pheromone);
         // Set the food fill
@@ -54,6 +58,91 @@ public class InGameUI : MonoBehaviour
         // Set the honeydew fill
         SetHoneydewFill(honeydew);
         // Set the building material fill
+        SetBuildingMaterialFill(buildingMaterials);
+    }
+
+    public void Update()
+    {
+        if (!isActive) return;
+        TickInGameUI(Time.deltaTime);
+    }
+
+    public void SetActive()
+    {
+        isActive = true;
+    }
+
+    public void SetInactive()
+    {
+        isActive = false;
+    }
+
+    public void TickInGameUI(float delta)
+    {
+        TickDayTimer(delta);
+        TickFood(delta);
+        TickWater(delta);
+    }
+
+    public void SetNextDay()
+    {
+        currentDay++;
+        if (currentDay <= maxDay) {
+            SetDayText(currentDay);
+        } else {
+            currentDay = maxDay;
+        }
+    }
+
+    public void TickDayTimer(float delta)
+    {
+        currentDayTimer -= delta;
+        SetDayFill(currentDayTimer);
+    }
+
+    public void TickPheromone()
+    {
+        pheromone -= 0.01f;
+        SetPheromoneFill(pheromone);
+    }
+
+    public void TickFood(float delta)
+    {
+        food -= 0.02f * delta;
+        SetFoodFill(food);
+    }
+
+    public void TickWater(float delta)
+    {
+        water -= 0.01f * delta;
+        SetWaterFill(water);
+    }
+
+    public void LoseHoneydew()
+    {
+        honeydew--;
+        if (honeydew < 0) {
+            honeydew = 0;
+        }
+        SetHoneydewFill(honeydew);
+    }
+
+    public void GainHoneydew()
+    {
+        honeydew++;
+        if (honeydew > 5) {
+            honeydew = 5;
+        }
+        SetHoneydewFill(honeydew);
+    }
+
+    public void GainBuildingMaterials()
+    {
+        buildingMaterials += 0.2f;
+        if (buildingMaterials >= 1.0f) {
+            buildingMaterials -= 1.0f;
+            level++;
+        }
         SetBuildingMaterialFill(buildingMaterials);
     }
 
@@ -72,9 +161,9 @@ public class InGameUI : MonoBehaviour
     public void SetDayFill(float fill)
     {
         // Assert that the fill is between 0 and 1
-        Debug.Assert(fill >= 0 && fill <= 1, "Fill is not between 0 and 1!");
+        Debug.Assert(fill >= 0 && fill <= initialDayTimer, "Fill is not between 0 and 60!");
         // Set the day fill
-        dayFill.fillAmount = fill;
+        dayFill.fillAmount = fill / initialDayTimer;
     }
 
     // Set the pheromone fill
