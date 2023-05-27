@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
     public GameObject[] howToPlayPages;
     // Reference the credits UI
     public GameObject creditsUI;
+    // Reference the in-game UI
+    public GameObject inGameUI;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,8 @@ public class MainMenu : MonoBehaviour
         howToPlayUI.SetActive(false);
         // Set the credits UI to false
         creditsUI.SetActive(false);
+        // Set the in-game UI to false
+        inGameUI.SetActive(false);
 
         // Assert that the how-to-play UI pages array is not empty
         Debug.Assert(howToPlayPages.Length > 0, "How-to-play UI pages array is empty!");
@@ -35,6 +39,15 @@ public class MainMenu : MonoBehaviour
         }
         // Set the first how-to-play UI page to true
         howToPlayPages[0].SetActive(true);
+    }
+
+    // Play button function
+    public void Play()
+    {
+        // Set the main menu UI to false
+        mainMenuUI.SetActive(false);
+        // Set the in-game UI to true
+        inGameUI.SetActive(true);
     }
 
     // How to play button function
