@@ -848,7 +848,6 @@ MonoBehaviour:
   level: 1
   currentDay: 0
   maxDay: 9
-  initialDayTimer: 0
   currentDayTimer: 0
   pheromone: 1
   food: 0.5
@@ -887,7 +886,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1898193677}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1383,7 +1382,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1651524437}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1800,7 +1799,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -1827,7 +1826,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418569866}
   m_LocalRotation: {x: 0.70090926, y: 0, z: 0, w: 0.71325046}
-  m_LocalPosition: {x: 56.54, y: 40, z: 1.25}
+  m_LocalPosition: {x: 0, y: 3, z: -2073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2763,13 +2762,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627509159}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00008241806}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1898193677}
-  m_RootOrder: 1
+  m_Father: {fileID: 1651524437}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2991,7 +2990,7 @@ RectTransform:
   m_GameObject: {fileID: 722689749}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 524675636}
@@ -3032,7 +3031,7 @@ RectTransform:
   m_Children:
   - {fileID: 1784399042}
   m_Father: {fileID: 1898193677}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4474,7 +4473,7 @@ RectTransform:
   m_GameObject: {fileID: 1328125588}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1775235317}
@@ -4516,7 +4515,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1651524437}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5900,10 +5899,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 627509160}
   - {fileID: 272858666}
   - {fileID: 1366472296}
   m_Father: {fileID: 1898193677}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6605,6 +6605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1898193677}
+  - component: {fileID: 1898193678}
   m_Layer: 5
   m_Name: EndOfGame
   m_TagString: Untagged
@@ -6625,7 +6626,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1173195453}
-  - {fileID: 627509160}
   - {fileID: 786335332}
   - {fileID: 1651524437}
   - {fileID: 161493108}
@@ -6637,6 +6637,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1898193678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898193676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7ddfd6a2a11491dadd2e49a58175bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winUI: {fileID: 786335331}
+  loseUI: {fileID: 1651524436}
+  dayText: {fileID: 1366472297}
+  dayTextSprites:
+  - {fileID: 21300000, guid: b537b7ad49cd24b49aeb34613f36bdf5, type: 3}
+  - {fileID: 21300000, guid: c2d5e4cd06d5c4f52b0f9d33087b9243, type: 3}
+  - {fileID: 21300000, guid: 4a82bcfc0ed64479da79b7f78bb41a7e, type: 3}
+  - {fileID: 21300000, guid: 89fe08bdc8d2848b6849abd949ecc481, type: 3}
+  - {fileID: 21300000, guid: 3e7d5d5d0d1f64dc2a250a97c802e6e6, type: 3}
+  - {fileID: 21300000, guid: 0ca7e458861894a368b4c98ffdef867e, type: 3}
+  - {fileID: 21300000, guid: e0989437847654c47a92530f62c78044, type: 3}
+  - {fileID: 21300000, guid: 312bb53d57e6242199095e6ebbe1b088, type: 3}
+  - {fileID: 21300000, guid: e88c18b8f1903423390a98e4b24c5de4, type: 3}
 --- !u!1 &1910884885
 GameObject:
   m_ObjectHideFlags: 0

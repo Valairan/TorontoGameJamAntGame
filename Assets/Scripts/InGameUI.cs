@@ -37,7 +37,7 @@ public class InGameUI : MonoBehaviour
     [HideInInspector]
     public int maxDay = 9;
     // Track the day timer
-    private float initialDayTimer = 10.0f;
+    public float initialDayTimer = 1.0f;
     [HideInInspector]
     public float currentDayTimer;
     // Track the pheromone

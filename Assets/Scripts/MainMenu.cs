@@ -167,6 +167,20 @@ public class MainMenu : MonoBehaviour
 
         // Set inactive
         inGameUIScript.isActive = false;
+        // Reference the end of game script
+        EndOfGame endOfGameScript = endOfGameUI.GetComponent<EndOfGame>();
+        // If the player won
+        if (win)
+        {
+            // Call the win game function
+            endOfGameScript.WinGame();
+        }
+        // If the player lost
+        else
+        {
+            // Call the lose game function
+            endOfGameScript.LoseGame(level);
+        }
     }
 
     // End of game return button function

@@ -27,7 +27,7 @@ public class EndOfDay : MonoBehaviour
         for (int i = 0; i < collected.Length; i++)
         {
             // Instantiate the collectible
-            GameObject collectible = Instantiate(collected[i].gameObject, collected[i].position, collected[i].rotation);
+            GameObject collectible = Instantiate(collected[i].gameObject, Vector3.zero, collected[i].rotation);
             // Set the collectible parent to the collectible container
             collectible.transform.SetParent(collectibleContainer.transform, true);
             // Set the layer of the collectible to the UI layer
