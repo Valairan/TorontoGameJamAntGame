@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
 {
+    // Reference the main menu script
+    private MainMenu mainMenuScript;
+
+    [HideInInspector]
     public bool isActive = false;
 
     // Reference the day text
@@ -25,28 +29,41 @@ public class InGameUI : MonoBehaviour
     public Image buildingMaterialFill;
 
     // Track the nest level
+    [HideInInspector]
     public int level = 1;
     // Track the current day
+    [HideInInspector]
     public int currentDay = 0;
+    [HideInInspector]
     public int maxDay = 9;
     // Track the day timer
-    public float initialDayTimer = 60.0f;
-    public float currentDayTimer = 60.0f;
+    private float initialDayTimer = 10.0f;
+    [HideInInspector]
+    public float currentDayTimer;
     // Track the pheromone
+    [HideInInspector]
     public float pheromone = 1.0f;
     // Track the food
+    [HideInInspector]
     public float food = 0.5f;
     // Track the water
+    [HideInInspector]
     public float water = 0.5f;
     // Track the honeydew
+    [HideInInspector]
     public int honeydew = 3;
     // Track the building materials
+    [HideInInspector]
     public float buildingMaterials = 0.0f;
 
     public void Start()
     {
+        // Reference the main menu script
+        mainMenuScript = GetComponent<MainMenu>();
+
         // Set the day text
         SetDayText(currentDay);
+        currentDayTimer = initialDayTimer;
         // Set the day fill
         SetDayFill(currentDayTimer);
         // Set the pheromone fill
@@ -87,8 +104,8 @@ public class InGameUI : MonoBehaviour
     public void SetNextDay()
     {
         currentDay++;
-        if (currentDay > maxDay) {
-            currentDay = maxDay;
+        if (currentDay > maxDay - 1) {
+            currentDay = maxDay - 1;
         }
         SetDayText(currentDay);
     }
@@ -102,6 +119,7 @@ public class InGameUI : MonoBehaviour
         if (currentDayTimer == 0) {
             SetNextDay();
             currentDayTimer = initialDayTimer;
+            mainMenuScript.EndOfDay();
         }
         SetDayFill(currentDayTimer);
     }
@@ -117,9 +135,10 @@ public class InGameUI : MonoBehaviour
 
     public void TickFood(float delta)
     {
-        food -= 0.02f * delta;
+        food -= 0.005f * delta;
         if (food < 0) {
             food = 0;
+            mainMenuScript.EndOfGame(false, level);
         }
         SetFoodFill(food);
     }
@@ -135,9 +154,10 @@ public class InGameUI : MonoBehaviour
 
     public void TickWater(float delta)
     {
-        water -= 0.01f * delta;
+        water -= 0.0025f * delta;
         if (water < 0) {
             water = 0;
+            mainMenuScript.EndOfGame(false, level);
         }
         SetWaterFill(water);
     }
@@ -156,6 +176,7 @@ public class InGameUI : MonoBehaviour
         honeydew--;
         if (honeydew < 0) {
             honeydew = 0;
+            mainMenuScript.EndOfGame(false, level);
         }
         SetHoneydewFill(honeydew);
     }

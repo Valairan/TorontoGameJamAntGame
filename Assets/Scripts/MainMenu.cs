@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    InGameUI inGameUIScript;
+    // Reference the in-game UI script
+    private InGameUI inGameUIScript;
     // Reference the main menu UI
     public GameObject mainMenuUI;
     // Reference the how-to-play UI
@@ -157,7 +158,7 @@ public class MainMenu : MonoBehaviour
     }
 
     // End of game button function
-    public void EndOfGame()
+    public void EndOfGame(bool win, int level)
     {
         // Set the in-game UI to false
         inGameUI.SetActive(false);
