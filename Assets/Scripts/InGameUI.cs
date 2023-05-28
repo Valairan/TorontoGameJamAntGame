@@ -87,34 +87,49 @@ public class InGameUI : MonoBehaviour
     public void SetNextDay()
     {
         currentDay++;
-        if (currentDay <= maxDay) {
-            SetDayText(currentDay);
-        } else {
+        if (currentDay > maxDay) {
             currentDay = maxDay;
         }
+        SetDayText(currentDay);
     }
 
     public void TickDayTimer(float delta)
     {
         currentDayTimer -= delta;
+        if (currentDayTimer < 0) {
+            currentDayTimer = 0;
+        }
+        if (currentDayTimer == 0) {
+            SetNextDay();
+            currentDayTimer = initialDayTimer;
+        }
         SetDayFill(currentDayTimer);
     }
 
     public void TickPheromone()
     {
         pheromone -= 0.01f;
+        if (pheromone < 0) {
+            pheromone = 0;
+        }
         SetPheromoneFill(pheromone);
     }
 
     public void TickFood(float delta)
     {
         food -= 0.02f * delta;
+        if (food < 0) {
+            food = 0;
+        }
         SetFoodFill(food);
     }
 
     public void TickWater(float delta)
     {
         water -= 0.01f * delta;
+        if (water < 0) {
+            water = 0;
+        }
         SetWaterFill(water);
     }
 
