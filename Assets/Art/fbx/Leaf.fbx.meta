@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Leaf
     second: {fileID: 2100000, guid: a31ba968c462f8a49a4c8f7720799421, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LeafStem
+    second: {fileID: 2100000, guid: 9d8a22e20c42c304d9d7dea9ea081fbb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

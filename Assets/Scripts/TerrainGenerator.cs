@@ -12,6 +12,7 @@ public class TerrainGenerator : MonoBehaviour
     public int xSize = 20;
     public int zSize = 20;
     [Range(0,1)]public float obstacleThreshold;
+    [Range(0, 1)] public float collectiblesThreshold;
     public Transform[] obstacles;
     public Transform[] collectibles;
     void Start()
@@ -40,15 +41,15 @@ public class TerrainGenerator : MonoBehaviour
             for(int x = -xSize/2; x <= xSize/2; x++)
             {
                 float y = Mathf.PerlinNoise(x * .3f, z * .3f) * 2f;
-                vertices[i] = new Vector3(x, y, z);
+                vertices[i] = new Vector3(x, 0, z);
                 // Debug.Log(y);
-                if(y < obstacleThreshold){
+                if (y < obstacleThreshold){
                     if(Vector3.Distance(vertices[i], Vector3.zero) > 5.0f)
                         Instantiate(obstacles[Random.Range(0, obstacles.Length)], vertices[i], Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f)).SetParent(transform, true);
                 }else{
-                    
+                    if (y < collectiblesThreshold)
+                        Instantiate(collectibles[Random.Range(0, collectibles.Length)], vertices[i], Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f)).SetParent(transform, true);
                 }
-                vertices[i] = new Vector3(x, 0, z);
                 //uv[i] = new Vector2(x / xSize, z / zSize);
                 i++;
             }
@@ -84,7 +85,7 @@ public class TerrainGenerator : MonoBehaviour
         //mesh.uv = uv;
         mesh.vertices = vertices;
         mesh.triangles = triangle;
-
+        mesh.RecalculateNormals();
     }
 
  

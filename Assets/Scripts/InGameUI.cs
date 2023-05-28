@@ -99,6 +99,7 @@ public class InGameUI : MonoBehaviour
         TickDayTimer(delta);
         TickFood(delta);
         TickWater(delta);
+        TickPheromone();
     }
 
     public void SetNextDay()
@@ -126,11 +127,13 @@ public class InGameUI : MonoBehaviour
 
     public void TickPheromone()
     {
-        pheromone -= 0.01f;
+        pheromone -= 0.00001f;
         if (pheromone < 0) {
             pheromone = 0;
+            
         }
         SetPheromoneFill(pheromone);
+
     }
 
     public void TickFood(float delta)

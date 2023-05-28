@@ -3,7 +3,12 @@ guid: cf2b736c8073a7941bf62406e582a0f3
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Honeydew
+    second: {fileID: 2100000, guid: f8a85fc521245a0468d3d85404c1af89, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
