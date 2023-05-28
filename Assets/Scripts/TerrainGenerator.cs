@@ -24,10 +24,7 @@ public class TerrainGenerator : MonoBehaviour
         Createmesh();
        
     }
-    private void Update()
-    {
-        updatemesh();
-    }
+
 
     // Update is called once per frame
   
@@ -81,15 +78,6 @@ public class TerrainGenerator : MonoBehaviour
             }
             verts++;
         }
-    }
-
-    void updatemesh()
-    {
-        mesh.Clear();
-        //mesh.uv = uv;
-        mesh.vertices = vertices;
-        mesh.triangles = triangle;
-        mesh.RecalculateNormals();
     }
 
  
