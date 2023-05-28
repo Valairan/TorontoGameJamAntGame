@@ -126,7 +126,7 @@ public class InGameUI : MonoBehaviour
         if (currentDayTimer == 0) {
             SetNextDay();
             currentDayTimer = initialDayTimer;
-            mainMenuScript.EndOfGame(false, level);
+            mainMenuScript.EndOfDay();
         }
         SetDayFill(currentDayTimer);
     }
