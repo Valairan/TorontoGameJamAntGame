@@ -848,6 +848,7 @@ MonoBehaviour:
   level: 1
   currentDay: 0
   maxDay: 9
+  initialDayTimer: 10
   currentDayTimer: 0
   pheromone: 1
   food: 0.5
