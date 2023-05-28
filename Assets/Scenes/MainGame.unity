@@ -248,8 +248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSize: 60
   zSize: 60
-  obstacleThreshold: 0.817
-  collectiblesThreshold: 0.578
+  obstacleThreshold: 0.685
+  collectiblesThreshold: 0.728
   obstacles:
   - {fileID: 2108788885426151128, guid: 48fed18bf6333d543b30a7c2c5762391, type: 3}
   - {fileID: 709857420868933426, guid: 663c2f124323e9243b2ac38fd884268d, type: 3}
@@ -807,6 +807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10701675eea9c48eda09754f112f39a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameHasStarted: 0
   mainMenuUI: {fileID: 604582175}
   howToPlayUI: {fileID: 1628179501}
   howToPlayPages:
@@ -855,7 +856,7 @@ MonoBehaviour:
   level: 1
   currentDay: 0
   maxDay: 9
-  initialDayTimer: 240
+  initialDayTimer: 60
   currentDayTimer: 0
   pheromone: 1
   food: 0.5
@@ -1660,7 +1661,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 379059334}
-  - {fileID: 1662498183}
   - {fileID: 1915380370}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -1680,10 +1680,11 @@ MonoBehaviour:
   speed: 1000
   mainCamera: {fileID: 0}
   playerRb: {fileID: 349963690}
-  groundCheck: {fileID: 1662498183}
+  groundCheck: {fileID: 0}
   playerAnimator: {fileID: 349963691}
   ticker: {fileID: 105146916}
-  pheromonePrefab: {fileID: 431326962867829016, guid: d38e901d797bdc84db8c0b4256d8b74b, type: 3}
+  menu: {fileID: 105146915}
+  pheromonePrefab: {fileID: 8809432847087521801, guid: d38e901d797bdc84db8c0b4256d8b74b, type: 3}
   collectedItems: []
   m_MovementSmoothing: 0
 --- !u!65 &349963689
@@ -6476,6 +6477,8 @@ MonoBehaviour:
   collectedObjectContainer: {fileID: 1172511192}
   leftBehindObjectContainer: {fileID: 0}
   environment: {fileID: 5813358}
+  player: {fileID: 349963686}
+  playerMovementScript: {fileID: 0}
 --- !u!1 &1651367457
 GameObject:
   m_ObjectHideFlags: 0
@@ -6505,7 +6508,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8f89ee5a0d2b34214b093220bc10e5df, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6719,37 +6722,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657395635}
   m_CullTransparentMesh: 1
---- !u!1 &1662498182
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1662498183}
-  m_Layer: 0
-  m_Name: GroundCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1662498183
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662498182}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 349963687}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1677071104
 GameObject:
   m_ObjectHideFlags: 0
@@ -7313,7 +7285,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7654,12 +7626,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915380369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.37}
+  m_LocalPosition: {x: 0, y: 0, z: 1.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 349963687}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1985063983
 GameObject:

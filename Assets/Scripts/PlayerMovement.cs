@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] MainMenu menu;
     [SerializeField] GameObject pheromonePrefab;
     GameObject previousNodePheromone;
-    [SerializeField] List<GameObject> collectedItems;
+    public List<GameObject> collectedItems;
     int numberOfCollectedItems = 0;
 
     private float timer = 2f;
