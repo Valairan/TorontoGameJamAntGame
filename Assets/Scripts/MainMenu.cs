@@ -22,12 +22,18 @@ public class MainMenu : MonoBehaviour
     public GameObject endOfDayUI;
     // Reference the end of game UI
     public GameObject endOfGameUI;
+    // Reference the sound player
+    public GameObject soundPlayer;
+    // Reference the sound manager script
+    private SoundManager soundManagerScript;
 
     // Start is called before the first frame update
     void Start()
     {
         // Reference the in-game UI script
         inGameUIScript = GetComponent<InGameUI>();
+        // Reference the sound manager script
+        soundManagerScript = soundPlayer.GetComponent<SoundManager>();
 
         // Set the main menu UI to true
         mainMenuUI.SetActive(true);
@@ -64,6 +70,9 @@ public class MainMenu : MonoBehaviour
 
         // Set active
         inGameUIScript.isActive = true;
+
+        // Play the in-game music
+        soundManagerScript.PlayInGameMusic();
     }
 
     // How to play button function
@@ -172,12 +181,16 @@ public class MainMenu : MonoBehaviour
         // If the player won
         if (win)
         {
+            // Play win sound effect
+            soundManagerScript.PlayWinSFX();
             // Call the win game function
             endOfGameScript.WinGame();
         }
         // If the player lost
         else
         {
+            // Play lose sound effect
+            soundManagerScript.PlayLoseSFX();
             // Call the lose game function
             endOfGameScript.LoseGame(level);
         }

@@ -27,6 +27,10 @@ public class InGameUI : MonoBehaviour
     public Image honeydewFill;
     // Reference the building material fill
     public Image buildingMaterialFill;
+    // Reference the sound player
+    public GameObject soundPlayer;
+    // Reference the sound manager script
+    private SoundManager soundManagerScript;
 
     // Track the nest level
     [HideInInspector]
@@ -60,6 +64,8 @@ public class InGameUI : MonoBehaviour
     {
         // Reference the main menu script
         mainMenuScript = GetComponent<MainMenu>();
+        // Reference the sound manager script
+        soundManagerScript = soundPlayer.GetComponent<SoundManager>();
 
         // Set the day text
         SetDayText(currentDay);
@@ -120,7 +126,7 @@ public class InGameUI : MonoBehaviour
         if (currentDayTimer == 0) {
             SetNextDay();
             currentDayTimer = initialDayTimer;
-            mainMenuScript.EndOfDay();
+            mainMenuScript.EndOfGame(false, level);
         }
         SetDayFill(currentDayTimer);
     }
@@ -148,6 +154,8 @@ public class InGameUI : MonoBehaviour
 
     public void GainFood()
     {
+        // Play food sfx
+        soundManagerScript.PlayFoodSFX();
         food += 0.2f;
         if (food > 1) {
             food = 1;
@@ -167,6 +175,8 @@ public class InGameUI : MonoBehaviour
 
     public void GainWater()
     {
+        // Play water sfx
+        soundManagerScript.PlayWaterSFX();
         water += 0.2f;
         if (water > 1) {
             water = 1;
@@ -186,6 +196,8 @@ public class InGameUI : MonoBehaviour
 
     public void GainHoneydew()
     {
+        // Play honeydew sfx
+        soundManagerScript.PlayHoneydewSFX();
         honeydew++;
         if (honeydew > 5) {
             honeydew = 5;
@@ -195,10 +207,15 @@ public class InGameUI : MonoBehaviour
 
     public void GainBuildingMaterials()
     {
+        // Play building materials sfx
+        soundManagerScript.PlayBuildingMaterialsSFX();
         buildingMaterials += 0.2f;
         if (buildingMaterials >= 1.0f) {
             buildingMaterials -= 1.0f;
             level++;
+            if (level == 5) {
+                mainMenuScript.EndOfGame(true, level);
+            }
         }
         SetBuildingMaterialFill(buildingMaterials);
     }

@@ -14,26 +14,20 @@ public class EndOfGame : MonoBehaviour
     // Reference the day text sprites array
     public Sprite[] dayTextSprites;
 
-    void Start()
-    {
-        Debug.Log("EndOfGame.cs Start()");
-        // Set the win UI to false
-        winUI.SetActive(false);
-        // Set the lose UI to false
-        loseUI.SetActive(false);
-    }
-
     // Win game function
     public void WinGame()
     {
-        Debug.Log("EndOfGame.cs WinGame()");
         // Set the win UI to true
         winUI.SetActive(true);
+        // Set the lose UI to false
+        loseUI.SetActive(false);
     }
 
     // Lose game function
     public void LoseGame(int level)
     {
+        // Set the win UI to false
+        winUI.SetActive(false);
         // Set the lose UI to true
         loseUI.SetActive(true);
 
