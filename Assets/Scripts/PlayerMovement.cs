@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] Animator playerAnimator;
     [SerializeField] InGameUI ticker;
-    [SerializeField] LineRenderer pheromoneRenderer;
-    List<Vector3> listOfPoints;
+    [SerializeField] GameObject pheromonePrefab;
+    GameObject previousNodePheromone;
     [SerializeField] List<Transform> collectedItems;
 
     float horizontalInput;
@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        listOfPoints = new List<Vector3>();
         playerRb = GetComponent<Rigidbody>();
     }
 
@@ -52,17 +51,41 @@ public class PlayerMovement : MonoBehaviour
 
     void DropPheromone()
     {
-        if((ticker.pheromone * 10) % 10 == 0)
+        Debug.Log(ticker.pheromone);
+        if((int)(ticker.pheromone * 10) % 2 == 0)
         {
-            listOfPoints.Add(transform.position);
+            Debug.Log(ticker.pheromone);
+
+            if (previousNodePheromone != null)
+            {
+                if(Vector3.Distance(previousNodePheromone.transform.position, transform.position) > 2.0f)
+                {
+                    previousNodePheromone = Instantiate(pheromonePrefab, transform.position, Quaternion.identity);
+                }
+            }
+            else
+            {
+                previousNodePheromone = Instantiate(pheromonePrefab, transform.position, Quaternion.identity);
+
+            }
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("Collectible")){
-            collectedItems.Add(collision.transform);
-
+        if (collision.transform.CompareTag("Food")){
+            ticker.GainFood();
+        }else if (collision.transform.CompareTag("Water"))
+        {
+            ticker.GainWater();
+        }
+        else if (collision.transform.CompareTag("Material"))
+        {
+            ticker.GainBuildingMaterials();
+        }
+        else if (collision.transform.CompareTag("Dew"))
+        {
+            ticker.GainHoneydew();
         }
     }
 

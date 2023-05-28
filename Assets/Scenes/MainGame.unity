@@ -1683,7 +1683,7 @@ MonoBehaviour:
   groundCheck: {fileID: 1662498183}
   playerAnimator: {fileID: 349963691}
   ticker: {fileID: 105146916}
-  pheromoneRenderer: {fileID: 349963692}
+  pheromonePrefab: {fileID: 431326962867829016, guid: d38e901d797bdc84db8c0b4256d8b74b, type: 3}
   collectedItems: []
   m_MovementSmoothing: 0
 --- !u!65 &349963689
@@ -3329,7 +3329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 59f89e3828860f74ab1654e937da4582, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 59f89e3828860f74ab1654e937da4582, type: 3}
       propertyPath: m_LocalPosition.z

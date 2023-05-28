@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 7200ba4ef077f4950baaf8d701655075
+=======
+guid: 5d72cff90efd67d4696474ba28af6ce4
+>>>>>>> c71f4a6 (Added particle system)
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

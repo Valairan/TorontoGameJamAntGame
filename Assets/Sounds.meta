@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d40366141c01d443d9c85c32b52981be
+=======
+guid: 8c15b6258caac7142b94cf9bdbeec6e7
+>>>>>>> c71f4a6 (Added particle system)
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

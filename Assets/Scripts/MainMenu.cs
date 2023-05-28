@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0;
         // Reference the in-game UI script
         inGameUIScript = GetComponent<InGameUI>();
         // Reference the sound manager script
@@ -63,11 +64,12 @@ public class MainMenu : MonoBehaviour
     // Play button function
     public void Play()
     {
+        Time.timeScale = 1.0f;
         // Set the main menu UI to false
         mainMenuUI.SetActive(false);
         // Set the in-game UI to true
         inGameUI.SetActive(true);
-
+            
         // Set active
         inGameUIScript.isActive = true;
 
