@@ -10,9 +10,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] Animator playerAnimator;
     [SerializeField] InGameUI ticker;
+    [SerializeField] MainMenu menu;
     [SerializeField] GameObject pheromonePrefab;
     GameObject previousNodePheromone;
     [SerializeField] List<Transform> collectedItems;
+
+    private float timer = 2f;
+    private float elapsedTime = 0f;
 
     float horizontalInput;
     float verticalInput;
@@ -29,10 +33,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (menu.gameHasStarted)
+        {
+            playerRb.velocity = Vector3.SmoothDamp(playerRb.velocity, getInputDirection() * speed * Time.deltaTime, ref m_Velocity, m_MovementSmoothing);
+            HandleAnimation(new Vector2(getInputDirection().x, getInputDirection().z));
+            DropPheromone();
+        }
 
-        playerRb.velocity =  Vector3.SmoothDamp(playerRb.velocity, getInputDirection() * speed * Time.deltaTime, ref m_Velocity, m_MovementSmoothing);
-        HandleAnimation(new Vector2(getInputDirection().x, getInputDirection().z));
-        DropPheromone();
     }
 
     Vector3 getInputDirection()
@@ -51,14 +58,13 @@ public class PlayerMovement : MonoBehaviour
 
     void DropPheromone()
     {
-        Debug.Log(ticker.pheromone);
-        if((int)(ticker.pheromone * 10) % 2 == 0)
-        {
-            Debug.Log(ticker.pheromone);
+        elapsedTime += Time.deltaTime;
 
+        if (elapsedTime >= timer)
+        {
             if (previousNodePheromone != null)
             {
-                if(Vector3.Distance(previousNodePheromone.transform.position, transform.position) > 2.0f)
+                if (Vector3.Distance(previousNodePheromone.transform.position, transform.position) > 2.0f)
                 {
                     previousNodePheromone = Instantiate(pheromonePrefab, transform.position, Quaternion.identity);
                 }
@@ -68,7 +74,12 @@ public class PlayerMovement : MonoBehaviour
                 previousNodePheromone = Instantiate(pheromonePrefab, transform.position, Quaternion.identity);
 
             }
+            elapsedTime = 0f;
         }
+
+
+
+        
     }
 
     private void OnCollisionEnter(Collision collision)

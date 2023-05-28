@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    public bool gameHasStarted;
     // Reference the in-game UI script
     private InGameUI inGameUIScript;
     // Reference the main menu UI
@@ -30,7 +31,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 0;
+        gameHasStarted = false;
         // Reference the in-game UI script
         inGameUIScript = GetComponent<InGameUI>();
         // Reference the sound manager script
@@ -64,7 +65,7 @@ public class MainMenu : MonoBehaviour
     // Play button function
     public void Play()
     {
-        Time.timeScale = 1.0f;
+        gameHasStarted = true;
         // Set the main menu UI to false
         mainMenuUI.SetActive(false);
         // Set the in-game UI to true
