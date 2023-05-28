@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    InGameUI inGameUIScript;
     // Reference the main menu UI
     public GameObject mainMenuUI;
     // Reference the how-to-play UI
@@ -16,10 +17,17 @@ public class MainMenu : MonoBehaviour
     public GameObject creditsUI;
     // Reference the in-game UI
     public GameObject inGameUI;
+    // Reference the end of day UI
+    public GameObject endOfDayUI;
+    // Reference the end of game UI
+    public GameObject endOfGameUI;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Reference the in-game UI script
+        inGameUIScript = GetComponent<InGameUI>();
+
         // Set the main menu UI to true
         mainMenuUI.SetActive(true);
         // Set the how-to-play UI to false
@@ -28,6 +36,10 @@ public class MainMenu : MonoBehaviour
         creditsUI.SetActive(false);
         // Set the in-game UI to false
         inGameUI.SetActive(false);
+        // Set the end of day UI to false
+        endOfDayUI.SetActive(false);
+        // Set the end of game UI to false
+        endOfGameUI.SetActive(false);
 
         // Assert that the how-to-play UI pages array is not empty
         Debug.Assert(howToPlayPages.Length > 0, "How-to-play UI pages array is empty!");
@@ -48,6 +60,9 @@ public class MainMenu : MonoBehaviour
         mainMenuUI.SetActive(false);
         // Set the in-game UI to true
         inGameUI.SetActive(true);
+
+        // Set active
+        inGameUIScript.isActive = true;
     }
 
     // How to play button function
@@ -108,5 +123,55 @@ public class MainMenu : MonoBehaviour
         mainMenuUI.SetActive(false);
         // Set the credits UI to true
         creditsUI.SetActive(true);
+    }
+
+    // Quit button function
+    public void Quit()
+    {
+        // Quit the game
+        Application.Quit();
+    }
+
+    // End of day button function
+    public void EndOfDay()
+    {
+        // Set the in-game UI to false
+        inGameUI.SetActive(false);
+        // Set the end of day UI to true
+        endOfDayUI.SetActive(true);
+
+        // Set inactive
+        inGameUIScript.isActive = false;
+    }
+
+    // End of day return button function
+    public void EndOfDayReturn()
+    {
+        // Set the in-game UI to true
+        inGameUI.SetActive(true);
+        // Set the end of day UI to false
+        endOfDayUI.SetActive(false);
+
+        // Set active
+        inGameUIScript.isActive = true;
+    }
+
+    // End of game button function
+    public void EndOfGame()
+    {
+        // Set the in-game UI to false
+        inGameUI.SetActive(false);
+        // Set the end of game UI to true
+        endOfGameUI.SetActive(true);
+
+        // Set inactive
+        inGameUIScript.isActive = false;
+    }
+
+    // End of game return button function
+    public void EndOfGameReturn()
+    {
+        // Restart the current scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }

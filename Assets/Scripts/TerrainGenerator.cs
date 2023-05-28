@@ -41,7 +41,7 @@ public class TerrainGenerator : MonoBehaviour
             {
                 float y = Mathf.PerlinNoise(x * .3f, z * .3f) * 2f;
                 vertices[i] = new Vector3(x, y, z);
-                Debug.Log(y);
+                // Debug.Log(y);
                 if(y < obstacleThreshold){
                     if(Vector3.Distance(vertices[i], Vector3.zero) > 5.0f)
                         Instantiate(obstacles[Random.Range(0, obstacles.Length)], vertices[i], Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f)).SetParent(transform, true);

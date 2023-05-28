@@ -124,11 +124,29 @@ public class InGameUI : MonoBehaviour
         SetFoodFill(food);
     }
 
+    public void GainFood()
+    {
+        food += 0.2f;
+        if (food > 1) {
+            food = 1;
+        }
+        SetFoodFill(food);
+    }
+
     public void TickWater(float delta)
     {
         water -= 0.01f * delta;
         if (water < 0) {
             water = 0;
+        }
+        SetWaterFill(water);
+    }
+
+    public void GainWater()
+    {
+        water += 0.2f;
+        if (water > 1) {
+            water = 1;
         }
         SetWaterFill(water);
     }
