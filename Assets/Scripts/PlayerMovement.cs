@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] MainMenu menu;
     [SerializeField] GameObject pheromonePrefab;
     GameObject previousNodePheromone;
-    [SerializeField] List<Transform> collectedItems;
+    [SerializeField] List<GameObject> collectedItems;
+    int numberOfCollectedItems = 0;
 
     private float timer = 2f;
     private float elapsedTime = 0f;
@@ -84,19 +85,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("Food")){
+        if (collision.transform.CompareTag("Food"))
+        {
+            numberOfCollectedItems++;
             ticker.GainFood();
+            collectedItems.Add(collision.gameObject);
+            collision.transform.position = new Vector3(0, -25, 0);
         }else if (collision.transform.CompareTag("Water"))
         {
+            numberOfCollectedItems++;
             ticker.GainWater();
+            collectedItems.Add(collision.gameObject);
+            collision.transform.position = new Vector3(0, -25, 0);
         }
         else if (collision.transform.CompareTag("Material"))
         {
+            numberOfCollectedItems++;
             ticker.GainBuildingMaterials();
+            collectedItems.Add(collision.gameObject);
+            collision.transform.position = new Vector3(0, -25, 0);
         }
         else if (collision.transform.CompareTag("Dew"))
         {
+            numberOfCollectedItems++;
             ticker.GainHoneydew();
+            collectedItems.Add(collision.gameObject);
+            collision.transform.position = new Vector3(0, -25, 0);
         }
     }
 

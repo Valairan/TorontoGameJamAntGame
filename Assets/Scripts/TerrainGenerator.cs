@@ -15,6 +15,8 @@ public class TerrainGenerator : MonoBehaviour
     [Range(0, 1)] public float collectiblesThreshold;
     public Transform[] obstacles;
     public Transform[] collectibles;
+    int numberOfCollectiblesInScene = 0;
+
     void Start()
     {
         mesh = new Mesh();
@@ -48,7 +50,10 @@ public class TerrainGenerator : MonoBehaviour
                         Instantiate(obstacles[Random.Range(0, obstacles.Length)], vertices[i], Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f)).SetParent(transform, true);
                 }else{
                     if (y < collectiblesThreshold)
+                    {
                         Instantiate(collectibles[Random.Range(0, collectibles.Length)], vertices[i], Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f)).SetParent(transform, true);
+                        numberOfCollectiblesInScene++;
+                    }
                 }
                 //uv[i] = new Vector2(x / xSize, z / zSize);
                 i++;
@@ -76,7 +81,6 @@ public class TerrainGenerator : MonoBehaviour
             }
             verts++;
         }
-        gameObject.AddComponent<MeshCollider>();
     }
 
     void updatemesh()
