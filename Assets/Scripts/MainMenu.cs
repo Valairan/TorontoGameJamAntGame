@@ -145,9 +145,17 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    // End of day button function
     public void EndOfDay()
     {
+        EndOfDay(false);
+    }
+    // End of day button function
+    public void EndOfDay(bool isVillain)
+    {
+        if (isVillain)
+        {
+            if (inGameUIScript.LoseHoneydew()) { return; }
+        }
         // Set the in-game UI to false
         inGameUI.SetActive(false);
         // Set the end of day UI to true

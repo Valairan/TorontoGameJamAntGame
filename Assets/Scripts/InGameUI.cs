@@ -8,6 +8,8 @@ public class InGameUI : MonoBehaviour
     // Reference the main menu script
     private MainMenu mainMenuScript;
 
+    [SerializeField] PlayerMovement player;
+    [SerializeField] Animator sunsetController;
     [HideInInspector]
     public bool isActive = false;
 
@@ -105,7 +107,7 @@ public class InGameUI : MonoBehaviour
         TickDayTimer(delta);
         TickFood(delta);
         TickWater(delta);
-        TickPheromone();
+        TickPheromone(delta);
     }
 
     public void SetNextDay()
@@ -119,6 +121,7 @@ public class InGameUI : MonoBehaviour
 
     public void TickDayTimer(float delta)
     {
+
         currentDayTimer -= delta;
         if (currentDayTimer < 0) {
             currentDayTimer = 0;
@@ -128,15 +131,20 @@ public class InGameUI : MonoBehaviour
             currentDayTimer = initialDayTimer;
             mainMenuScript.EndOfDay();
         }
+        sunsetController.SetFloat("amount", currentDayTimer / 60f);
         SetDayFill(currentDayTimer);
     }
 
-    public void TickPheromone()
+    public void TickPheromone(float delta)
     {
-        pheromone -= 0.00001f;
+        if(!(player.getInputDirection().magnitude > 0.0f))
+        {
+            return;
+        }
+        pheromone -= 0.0066f * delta;
         if (pheromone < 0) {
             pheromone = 0;
-            
+            mainMenuScript.EndOfGame(false, level);
         }
         SetPheromoneFill(pheromone);
 
@@ -144,7 +152,7 @@ public class InGameUI : MonoBehaviour
 
     public void TickFood(float delta)
     {
-        food -= 0.005f * delta;
+        food -= 0.03f * delta;
         if (food < 0) {
             food = 0;
             mainMenuScript.EndOfGame(false, level);
@@ -165,7 +173,7 @@ public class InGameUI : MonoBehaviour
 
     public void TickWater(float delta)
     {
-        water -= 0.0025f * delta;
+        water -= 0.0125f * delta;
         if (water < 0) {
             water = 0;
             mainMenuScript.EndOfGame(false, level);
@@ -184,14 +192,16 @@ public class InGameUI : MonoBehaviour
         SetWaterFill(water);
     }
 
-    public void LoseHoneydew()
+    public bool LoseHoneydew()
     {
         honeydew--;
         if (honeydew < 0) {
             honeydew = 0;
             mainMenuScript.EndOfGame(false, level);
+            return true;
         }
         SetHoneydewFill(honeydew);
+        return false;
     }
 
     public void GainHoneydew()

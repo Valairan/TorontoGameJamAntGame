@@ -12,9 +12,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] InGameUI ticker;
     [SerializeField] MainMenu menu;
     [SerializeField] GameObject pheromonePrefab;
+    [SerializeField] Transform pheromoneContainer;
     GameObject previousNodePheromone;
     public List<GameObject> collectedItems;
-    int numberOfCollectedItems = 0;
+    public int numberOfCollectedItems = 0;
 
     private float timer = 2f;
     private float elapsedTime = 0f;
@@ -43,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    Vector3 getInputDirection()
+    public Vector3 getInputDirection()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
@@ -68,11 +69,13 @@ public class PlayerMovement : MonoBehaviour
                 if (Vector3.Distance(previousNodePheromone.transform.position, transform.position) > 2.0f)
                 {
                     previousNodePheromone = Instantiate(pheromonePrefab, transform.position, Quaternion.identity);
+                    previousNodePheromone.transform.SetParent(pheromoneContainer, true);
                 }
             }
             else
             {
                 previousNodePheromone = Instantiate(pheromonePrefab, transform.position, Quaternion.identity);
+                previousNodePheromone.transform.SetParent(pheromoneContainer, true);
 
             }
             elapsedTime = 0f;
@@ -111,6 +114,10 @@ public class PlayerMovement : MonoBehaviour
             ticker.GainHoneydew();
             collectedItems.Add(collision.gameObject);
             collision.transform.position = new Vector3(0, -25, 0);
+        }else if (collision.transform.CompareTag("Villain"))
+        {
+            menu.EndOfDay();
+
         }
     }
 

@@ -9,22 +9,34 @@ public class EndOfDay : MonoBehaviour
     public GameObject environment;
     public GameObject player;
     public PlayerMovement playerMovementScript;
+    public TerrainGenerator terrainGeneratorScript;
+    public Transform pheromoneParent;
 
-    // Start function
-    void Start()
+    private void OnEnable()
     {
-        // Reference the terrain generator script
-        TerrainGenerator terrainGeneratorScript = environment.GetComponent<TerrainGenerator>();
-        // Reference the player movement script
-        playerMovementScript = player.GetComponent<PlayerMovement>();
 
+        player.transform.position = new Vector3(0, 0, 3);
+        foreach (Transform child in pheromoneParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
         // Render collectibles
         RenderCollected(playerMovementScript.collectedItems);
+        List<GameObject> leftBehindItems = new List<GameObject>();
+        int leftBehindItemCount = terrainGeneratorScript.numberOfCollectiblesInScene - playerMovementScript.numberOfCollectedItems;
+        for (int i = 0; i < leftBehindItemCount; i++)
+        {
+            leftBehindItems.Add((terrainGeneratorScript.collectibles[Random.Range(0, terrainGeneratorScript.collectibles.Length)]).gameObject);
+        }
+        RenderLeftBehind(leftBehindItems);
     }
-
     // Render and add collected items to the collectible container
     public void RenderCollected(List<GameObject> collected)
     {
+        foreach (Transform child in collectedObjectContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
         float halfWidth = 30;
         float itemCount = collected.Count;
         float itemWidth = (halfWidth * 2) / itemCount;
@@ -48,8 +60,12 @@ public class EndOfDay : MonoBehaviour
     // Render and add left-behind items to the left-behind container
     public void RenderLeftBehind(List<GameObject> leftBehind)
     {
+        foreach (Transform child in leftBehindObjectContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
         float halfWidth = 30;
-        float itemCount = leftBehind.Count;
+        float itemCount = leftBehind.Count < 10 ? leftBehind.Count : 10 ;
         float itemWidth = (halfWidth * 2) / itemCount;
         // Loop through the left-behind items
         for (int i = 0; i < itemCount; i++)

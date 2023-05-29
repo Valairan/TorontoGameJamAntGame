@@ -8,6 +8,7 @@ TagManager:
   - Food
   - Water
   - Material
+  - Villain
   layers:
   - Default
   - TransparentFX

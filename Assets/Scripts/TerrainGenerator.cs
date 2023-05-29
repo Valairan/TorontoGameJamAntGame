@@ -15,14 +15,28 @@ public class TerrainGenerator : MonoBehaviour
     [Range(0, 1)] public float collectiblesThreshold;
     public Transform[] obstacles;
     public Transform[] collectibles;
-    int numberOfCollectiblesInScene = 0;
+    public int numberOfCollectiblesInScene = 0;
+    [SerializeField] GameObject HopperPrefab;
+    
 
     void Start()
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         Createmesh();
-       
+
+        for (int i = 0; i < 5; i++)
+        {
+           GameObject Hopper =  Instantiate(HopperPrefab, transform, true);
+            Hopper.transform.position = new Vector3(Random.Range(-30, 30), 0, Random.Range(-30, 30));
+            Hopper.transform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
+            if (Vector3.Distance(Hopper.transform.position, Vector3.zero) < 5.0f)
+            {
+                Hopper.transform.position = new Vector3(Hopper.transform.position.x + Random.Range(10, 20), 0, Hopper.transform.position.z + Random.Range(10, 20));
+            }
+                
+        }
+
     }
 
 
@@ -35,11 +49,13 @@ public class TerrainGenerator : MonoBehaviour
         vertices = new Vector3[(xSize + 1) * (zSize + 1)];
         uv = new Vector2[(xSize + 1) * (zSize + 1)];
 
+        float seed = Random.Range(0f, 1f);
+
         for(int i = 0,z = -zSize / 2; z <= zSize/2; z++)
         {
             for(int x = -xSize/2; x <= xSize/2; x++)
             {
-                float y = Mathf.PerlinNoise(x * .3f, z * .3f) * 2f;
+                float y = Mathf.PerlinNoise(x * seed, z * seed) * 2f;
                 vertices[i] = new Vector3(x, 0, z);
                 // Debug.Log(y);
                 if (y < obstacleThreshold){
@@ -51,6 +67,11 @@ public class TerrainGenerator : MonoBehaviour
                         Instantiate(collectibles[Random.Range(0, collectibles.Length)], vertices[i], Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f)).SetParent(transform, true);
                         numberOfCollectiblesInScene++;
                     }
+                    if (Random.Range(0f, 1f) < 0.05f)
+                    {
+                        Instantiate(collectibles[4], vertices[i], Quaternion.Euler(0.0f, Random.Range(0.0f, 360.0f), 0.0f)).SetParent(transform, true);
+                    }
+
                 }
                 //uv[i] = new Vector2(x / xSize, z / zSize);
                 i++;

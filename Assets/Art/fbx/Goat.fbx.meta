@@ -3,7 +3,27 @@ guid: 92540502a3b594e4fa92de3a4b91b704
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GoatBody
+    second: {fileID: 2100000, guid: f29ced55e5091124d8ddfe16a697da35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GoatFace
+    second: {fileID: 2100000, guid: ecddf68b22e367e4ca9d53321edb21e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GoatHoof
+    second: {fileID: 2100000, guid: cb00739055e022c459c3fd2f1ee09eaa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 2bdeb62847b06bf41a730b38725e6441, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
