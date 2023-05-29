@@ -1688,10 +1688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb011d2ef6f9874e9331748e8d36952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1000
-  mainCamera: {fileID: 0}
+  speed: 200
   playerRb: {fileID: 349963690}
-  groundCheck: {fileID: 0}
   playerAnimator: {fileID: 349963691}
   ticker: {fileID: 105146916}
   menu: {fileID: 105146915}
@@ -6618,7 +6616,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 105146915}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

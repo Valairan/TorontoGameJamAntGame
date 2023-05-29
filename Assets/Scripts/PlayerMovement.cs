@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed = 5;
-    [SerializeField] Transform mainCamera;
     [SerializeField] Rigidbody playerRb;
-    [SerializeField] Transform groundCheck;
     [SerializeField] Animator playerAnimator;
     [SerializeField] InGameUI ticker;
     [SerializeField] MainMenu menu;
